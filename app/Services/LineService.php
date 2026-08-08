@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Cache;
  * Orchestrates line browsing and search over the cached provider dataset.
  * Fetches the dataset through the repository, caches it for an hour, then
  * paginates it (browse) or filters it in-memory before paginating (search).
- * Knows nothing about Inertia, Vue, or HTTP responses.
  */
 final class LineService
 {
@@ -27,7 +26,6 @@ final class LineService
 
     /**
      * Paginate the full dataset for browsing.
-     *
      * @return LengthAwarePaginator<int, array<string, mixed>>
      */
     public function paginate(int $page = 1): LengthAwarePaginator
@@ -37,7 +35,6 @@ final class LineService
 
     /**
      * Filter the dataset by a case-insensitive substring match, then paginate.
-     *
      * @return LengthAwarePaginator<int, array<string, mixed>>
      */
     public function search(string $query, int $page = 1): LengthAwarePaginator
@@ -54,7 +51,6 @@ final class LineService
 
     /**
      * The full provider dataset, cached for an hour.
-     *
      * @return array<int, array<string, mixed>>
      */
     private function lines(): array
@@ -68,7 +64,6 @@ final class LineService
 
     /**
      * Build an in-memory paginator over a list of lines.
-     *
      * @param  array<int, array<string, mixed>>  $lines
      * @return LengthAwarePaginator<int, array<string, mixed>>
      */
